@@ -6,5 +6,5 @@ ONBUILD ADD requirements.txt /app/requirements.txt
 ONBUILD RUN pip install -r /app/requirements.txt
 ONBUILD ADD . /app
 
-EXPOSE 8080
+EXPOSE 8000
 CMD []
