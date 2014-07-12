@@ -1,8 +1,8 @@
 FROM deis/go
 MAINTAINER OpDemand <info@opdemand.com>
 
-WORKDIR /gopath/src/app
-ONBUILD ADD . /gopath/src/app/
+WORKDIR $GOPATH/src/app
+ONBUILD ADD . $GOPATH/src/app/
 ONBUILD RUN go install app
 
 CMD ["app"]
