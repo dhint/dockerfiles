@@ -1,16 +1,6 @@
-FROM debian:wheezy
+FROM google/golang
 MAINTAINER OpDemand <info@opdemand.com>
 
-# install common go dependencies
-RUN apt-get update -y && apt-get install -yq curl build-essential ca-certificates git mercurial bzr
-
-# prepare go environment
-RUN mkdir /goroot
-RUN mkdir /gopath
-ENV GOROOT /goroot
-ENV GOPATH /gopath
-ENV PATH $PATH:$GOROOT/bin:$GOPATH/bin
-
-# install go runtime
-ADD https://storage.googleapis.com/golang/go1.3.linux-amd64.tar.gz /tmp/go1.3.linux-amd64.tar.gz
-RUN tar -C $GOROOT -xzf /tmp/go1.3.linux-amd64.tar.gz --strip-components 1
+# HACK: install go v1.3 runtime until GoogleCloudPlatform/golang-docker#17 is merged
+RUN rm -rf /goroot/*
+RUN curl -s https://storage.googleapis.com/golang/go1.3.linux-amd64.tar.gz | tar -C $GOROOT -xzf - --strip-components 1
