@@ -2,8 +2,7 @@ FROM debian:wheezy
 MAINTAINER OpDemand <info@opdemand.com>
 
 # install common go dependencies
-RUN apt-get update
-RUN apt-get install -yq curl build-essential ca-certificates git mercurial bzr
+RUN apt-get update -y && apt-get install -yq curl build-essential ca-certificates git mercurial bzr
 
 # prepare go environment
 RUN mkdir /goroot
