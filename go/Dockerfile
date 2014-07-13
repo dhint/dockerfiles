@@ -6,10 +6,15 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
     build-essential \
     curl
 
-# install go
-RUN curl -s https://storage.googleapis.com/golang/go1.3.src.tar.gz | tar -v -C /usr/local -xz
-ENV PATH /usr/local/go/bin:$PATH
+# prepare go environment
+ENV GOROOT /usr/local/go
+RUN mkdir -p $GOROOT
 ENV GOPATH /go
+RUN mkdir -p $GOPATH
+ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
+
+# install go
+RUN curl -s https://storage.googleapis.com/golang/go1.3.src.tar.gz | tar -C $GOROOT -xzf - --strip-components 1
 RUN cd /usr/local/go/src && ./make.bash --no-clean 2>&1
 
 # compile go for cross compilation
