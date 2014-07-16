@@ -17,7 +17,7 @@ RUN mkdir -p $GOPATH
 ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
 
 # install go
-RUN curl -s https://storage.googleapis.com/golang/go1.3.src.tar.gz | tar -C $GOROOT -xzf - --strip-components 1
+RUN curl -sk https://storage.googleapis.com/golang/go1.3.src.tar.gz | tar -C $GOROOT -xzf - --strip-components 1
 RUN cd /usr/local/go/src && ./make.bash --no-clean 2>&1
 
 # compile go for cross compilation
