@@ -4,7 +4,10 @@ MAINTAINER OpDemand <info@opdemand.com>
 # install dependencies
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
     build-essential \
-    curl
+    curl \
+    git \
+    mercurial \
+    --no-install-recommends
 
 # prepare go environment
 ENV GOROOT /usr/local/go
