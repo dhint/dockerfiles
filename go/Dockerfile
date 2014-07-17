@@ -7,6 +7,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
     curl \
     git \
     mercurial \
+    ca-certificates \
     --no-install-recommends
 
 # prepare go environment
